@@ -29,11 +29,30 @@ def pareto_clean(solutions, datas):
     solutions_images = np.dot(solutions,datas)
     pareto_optima = []
     for i, s1 in enumerate(solutions):
+        if i%10 == 0:
+            print(i)
         add = True
-        for j, s2 in enumerate(pareto_optima):
-            if pareto_dominates(solutions_images[j],solutions_images[i]):
+        for j, s2 in enumerate(solutions):
+            if pareto_dominates(solutions_images[j],solutions_images[i]) and i != j:
                 add = False
                 break
         if add:
             pareto_optima.append(s1)
     return pareto_optima
+
+def pareto_insert(solutions, element, datas):
+    """ Insère un élément dans la liste si il n'est pas dominé en supprimant les
+    éléments qu'il domine, et renvoie True si l'insertion a fonctionné """
+    solutions_images = np.dot(np.array(solutions),datas)
+    element_image = np.dot(element,datas)
+    to_del_indexes = []
+    for i, s in enumerate(solutions):
+        if pareto_dominates(solutions_images[i], element_image):
+            return False
+        if pareto_dominates(element_image, solutions_images[i]):
+            to_del_indexes.append(i)
+    to_del_indexes.reverse()
+    for i in to_del_indexes:
+        del solutions[i]
+    solutions.append(element)
+    return True

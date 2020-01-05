@@ -21,12 +21,10 @@ if __name__ == "__main__":
     images = np.dot(solutions,subdatas)
     cleaned_solutions = pareto_clean(solutions,subdatas)
 
-    print(len(solutions))
-    print(len(cleaned_solutions))
-
     bin = [binary(s) for s in solutions]
     cleaned_bin = [binary(s) for s in cleaned_solutions]
 
-    print(np.setdiff1d(bin, cleaned_bin))
+    print(len(solutions))
+    print(len(cleaned_solutions))
 
     assert len(solutions) == len(cleaned_solutions)
