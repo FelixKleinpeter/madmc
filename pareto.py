@@ -29,8 +29,6 @@ def pareto_clean(solutions, datas):
     solutions_images = np.dot(solutions,datas)
     pareto_optima = []
     for i, s1 in enumerate(solutions):
-        if i%10 == 0:
-            print(i)
         add = True
         for j, s2 in enumerate(solutions):
             if pareto_dominates(solutions_images[j],solutions_images[i]) and i != j:

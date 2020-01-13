@@ -7,8 +7,8 @@ from sortedcontainers import SortedSet
 from pareto import pareto_insert, pareto_clean, neighbours, binary
 
 
-def PLS(datas,n,k):
-
+def PLS(datas,n,k,verbose=False):
+    """ Pareto Locale Search """
     solution = np.zeros((n), dtype=int)
     solution[rd.sample(range(n),k)] = 1
 
@@ -35,8 +35,7 @@ def PLS(datas,n,k):
                 if pareto_insert(solutions, neighbour, datas):
                     solutions_to_explore.append(neighbour)
 
-
-        if len(solutions_to_explore) % 10 == 0:
-            print(len(solutions_to_explore))
+        if len(solutions_to_explore) % 10 == 0 and verbose:
+            print("Nombre de solutions à explorer : " + str(len(solutions_to_explore)))
 
     return solutions
