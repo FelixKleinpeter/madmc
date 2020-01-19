@@ -18,8 +18,8 @@ if __name__ == "__main__":
     p = 3
     name = "1"
 
-    paretos_file_name = "solutions/pls_n"+str(n)+"_p"+str(p)+"_"+name
-    solutions_file_name = "solutions/solutions_n"+str(n)+"_p"+str(p)+"_"+name
+    paretos_file_name = "../MADMC_Solutions/solutions/pls_n"+str(n)+"_p"+str(p)+"_"+name
+    solutions_file_name = "../MADMC_Solutions/solutions/solutions_n"+str(n)+"_p"+str(p)+"_"+name
 
     with open(paretos_file_name, "rb") as f:
         paretos = np.array(pickle.load(f))
